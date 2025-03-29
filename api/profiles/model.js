@@ -1,13 +1,14 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+const {Schema} = mongoose;
 
-const experienceSchema = new mongoose.Schema({
+const experienceSchema = new Schema({
     title: { type: String, required: true },
     company: { type: String, required: true },
     dates: { type: String, required: true },
     description: { type: String, required: true }
 });
 
-const userProfileSchema = new mongoose.Schema({
+const userProfileSchema = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     experience: { type: [experienceSchema], default: [] },
@@ -19,4 +20,5 @@ const userProfileSchema = new mongoose.Schema({
     }
 });
 
-export const UserProfile = mongoose.model("User", userProfileSchema);
+const UserProfile = mongoose.model("User", userProfileSchema);
+module.exports = UserProfile;
